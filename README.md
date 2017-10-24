@@ -23,3 +23,5 @@
 动态路由的时候，_id都是动态的可以不写进path中，因为写进去就是字符串无法改变
 ### 数据填充
 如果要是想要在应用一开始就从服务端拿回数据填充vuex，可以在store.index.js的actions添加方法nuxtServerInit进行获取后commit就行
+context可以包含一个全局的app对象可以设置属性进去，比如说plugins的axios插件可以写成：
+  export default ({app}) => {app.axios = axios},然后只要以后有用到context对象的时候就可以直接使用axios而不用导入
