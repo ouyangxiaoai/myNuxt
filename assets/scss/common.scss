@@ -1,0 +1,227 @@
+$color0: #000;
+$color3: #333;
+$color6: #666;
+$color9: #999;
+$borderGray: #ededed;
+$colorF: #fff;
+$colorF2: #f2f2f2;
+$colorF5: #f5f5f5;
+$colorF8: #f8f8f8;
+$linkBlue: #43ade1;
+$activeBlue: #22a0de;
+$navActive: #43ade1;
+$tabBg: #595c5f;
+$contentPadding: 50px;
+$rem: 1242 / 10;
+$headerHeight: 176rem / $rem; // 移动端header高度
+$mCtPadding: 60rem / $rem; // 移动端content两边间距
+$colorBg: $colorF8 !default;
+// mixin
+
+@mixin bgCenter($url) {
+  background: url($url) no-repeat center center;
+}
+
+// 背景图片地址和大小
+@mixin bis($url) {
+  background-image: url($url) no-repeat;
+  background-size: 100% 100%;
+}
+
+// 移动端高清图片
+@mixin imageSet($src) {
+  background-image: url(#{$src}@2x.png);
+  background-image: -webkit-image-set(url(#{$src}@2x.png) 1x,
+    url(#{$src}@2x.png) 2x,
+    url(#{$src}@3x.png) 3x);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+// retina border
+// 0.5px实现 ios9
+@mixin retina-one-px() {
+  @supports (border-width: 0.5px) {
+    @media only screen and (-webkit-min-device-pixel-ratio: 2), screen and (-webkit-min-device-pixel-ratio: 3) {
+      border-width: 0.5px;
+    }
+  }
+}
+
+// border和transform实现
+// 注意before和after的层级问题
+@mixin retina-one-px-border($direction: top, $color: $borderGray) {
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+
+  @if $direction == top or $direction == bottom{
+    right: 0;
+    height: 0;
+    transform: scaleY(0.5);
+    border-top: 1px solid $color;
+  }
+  @if $direction == bottom {
+    top: auto;
+    bottom: 0;
+  }
+  @if $direction == right or $direction == left{
+    width: 0;
+    bottom: 0;
+    transform: scaleX(0.5);
+    border-left: 1px solid $color;
+  }
+  @if $direction == right {
+    left: auto;
+    right: 0;
+  }
+  @if $direction == all {
+    width: 200%;
+    height: 200%;
+    transform-origin: left top;
+    transform: scale(0.5);
+    border: 1px solid $color;
+  }
+}
+
+// border top & bottom
+@mixin border-tb($color: $borderGray) {
+  position: relative;
+  &::before {
+    content: "";
+    @include retina-one-px-border(top, $color);
+    z-index: 1;
+  }
+  &::after {
+    content: "";
+    @include retina-one-px-border(bottom, $color);
+  }
+}
+
+// border all
+@mixin border-all($color: $borderGray) {
+  position: relative;
+  &::before {
+    content: "";
+    @include retina-one-px-border(all, $color);
+  }
+}
+
+// 三角生成器
+@mixin triangleBottom($width, $height, $color) {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: $height $width / 2 0 $width / 2;
+  border-color: $color transparent transparent transparent;
+}
+
+@mixin upTriangle($width, $height, $color) {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 $width / 2 $height $width / 2;
+  border-color: transparent transparent $color transparent;
+}
+
+// 宽高
+@mixin wh($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+// 字体大小、行高、字体
+@mixin font($size, $line-height, $family: 'Microsoft YaHei') {
+  font: #{$size}/#{$line-height} $family;
+}
+
+// 字体大小，颜色
+@mixin sc($size, $color) {
+  font-size: $size;
+  color: $color;
+}
+
+// media最小宽度
+@mixin mediaMinWidth($width) {
+  @media screen and (min-width: $width) {
+    @content;
+  }
+}
+
+// media最大宽度
+@mixin mediaMaxWidth($width) {
+  @media screen and (max-width: $width) {
+    @content;
+  }
+}
+
+// 多行显示省略号
+@mixin mutipEllipsis($num) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $num;
+  -webkit-box-orient: vertical;
+}
+
+// 继承
+
+// 定位上下左右居中
+%posc {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+// 定位上下居中
+%posvm {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+// 定位左右居中
+%poshc {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+%ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+%maxWidth1920 {
+  max-width: 1920px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+%contentMaxWidth {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// function
+
+@function pxTorem($px) {
+  @return $px / $rem * 1rem;
+}
+
