@@ -5,7 +5,7 @@ nuxt会有一些特定的文件夹是不能修改名字的，比如存放页面�
 
 components目录下的.vue文件和pages中的.vue文件不一样，比如asyncData只会存在pages目录的vue文件，当然你也可以自己新建目录比如directives
 
-![这是目录结构](md-img/dir.png)
+![这是目录结构](https://github.com/ouyangxiaoai/myNuxt/blob/master/md-img/dir.jpg)
 #### 对于配置需要注意，大部分使用默认即可，如有特殊需要自定义修改
      1. cache表示缓存可以修改为true,如果有第三方需要打包如axios，则需要添加到build的vendor,这样不管axios引用多少次也只会打一次包，还有webpack的配置都在build选项中，可自定义。
      2. css的全局配置的时候，如果是第三方css文件比如normalize.css则直接使用名字即可，如果是scss则需要指定路径，并且标明lang: scss
