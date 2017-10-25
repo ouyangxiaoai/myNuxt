@@ -1,12 +1,10 @@
-### 开始
-1. 默认安装了vue-cli,则可以使用官方的简易模板，对于初学者很方便
-   vue init nuxt-community/starter-template <project-name>
-   然后就可以通过npm run dev 运行初始化的项目
-2. 新建项目 mkdir <projectName> cd projectName，新建package.json文件，然后写下一些信息比如name,version,author和最重要的运行项目的命令，dev/generate/build等
-通过npm install nuxt --save安装nuxt
+### nuxt最新官网
+[NUXT](https://nuxtjs.org/)
 ### 目录配置
-  1. nuxt会有一些特定的文件夹是不能修改名字的，比如存放页面文件的pages,因为nuxt需要根据pages的结构生成一个路由文件，具体的目录可查看官网，components目录下的.vue文件和pages中的.vue文件不一样，比如asyncData只会存在pages目录的vue文件，当然你也可以自己新建目录比如directives
-  #### 对于配置需要注意，大部分使用默认即可，如有特殊需要自定义修改
+> nuxt会有一些特定的文件夹是不能修改名字的，比如存放页面文件的pages,因为nuxt需要根据pages的结构生成一个路由文件，具体的目录可查看官网
+> components目录下的.vue文件和pages中的.vue文件不一样，比如asyncData只会存在pages目录的vue文件，当然你也可以自己新建目录比如directives
+> !["这是目录结构"](/md-img/dir.png)
+#### 对于配置需要注意，大部分使用默认即可，如有特殊需要自定义修改
      1. cache表示缓存可以修改为true,如果有第三方需要打包如axios，则需要添加到build的vendor,这样不管axios引用多少次也只会打一次包，还有webpack的配置都在build选项中，可自定义。
      2. css的全局配置的时候，如果是第三方css文件比如normalize.css则直接使用名字即可，如果是scss则需要指定路径，并且标明lang: scss
      3. middleware中间件的使用允许你在渲染一个或者一组页面之前执行一个模块，如果是在nuxt.config.js的router中其实就是相当于普通vue项目中的导航钩子会在每次路由改变的时候执行如router: {middlewar: 'auth'}如果是在layouts或者.vue中则是export default {middleware: 
