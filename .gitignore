@@ -13,3 +13,6 @@ dist
 
 # .gitignore
 .gitignore
+
+# xml
+*.xml
