@@ -27,7 +27,7 @@ cache表示缓存可以修改为true,如果有第三方需要打包如axios，�
     
 css的全局配置的时候，如果是第三方css文件比如normalize.css则直接使用名字即可，如果是scss则需要指定路径，并且标明lang: scss.新增了extractCSS,
 如果有很多公用的css模块可以配置：
-      module.exports = {
+    module.exports = {
       css: [
         'normalize.css', // 第三方css
         {src: '~/assets/scss/base.scss', lang: 'scss'} // 自定义scss
