@@ -66,7 +66,7 @@ module.exports = {
         },
       }
     }
-    ```
+```
     可以查看nuxt的webpack源码 [webpack](https://github.com/nuxt/nuxt.js/tree/master/lib/webpack)
 
 对于需要通过head引入的js文件，比如jQuery有可能因为eslint的原因导致$没有定义，所以注意可以把undefined通过.eslintrc编辑掉
@@ -79,7 +79,7 @@ rules: {
 plugins目录的文件是会在应用加载之前加载的，所以一些需要提前运行的可以写在plugins，特别是vue的组件，比如element-ui
 ```JavaScript
 /*  对于使用vue的插件或者自己写的插件  特别是需要使用到Vue.use()在这里并且最好添加到build打包中  */
-      **plugins: [
+      plugins: [
         {src: '~plugins/element-ui'},
         {src: '~plugins/axios'},
         {src: '~plugins/swiper', ssr: false}
