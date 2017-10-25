@@ -2,7 +2,7 @@
   <div>
   <div v-for="news in data" class="news">
     <div v-for="item in news" class="new" v-if="item !== null">
-      <nuxt-link :to="{path: '/info/'+ item.cms_id, params: {id: item.cms_id}}">
+      <nuxt-link :to="{path: '/info/'+ item.cms_id}">
       <div class="img-box"><img :src="item.img" alt=""></div>
       <div class="new-title">{{item.title}}</div>
       <div class="new-date">{{item.ctime}}</div>
