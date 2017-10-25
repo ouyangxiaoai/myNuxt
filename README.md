@@ -11,7 +11,7 @@ components目录下的.vue文件和pages中的.vue文件不一样，比如asyncD
 cache表示缓存可以修改为true,如果有第三方需要打包如axios，则需要添加到build的vendor,这样不管axios引用多少次也只会打一次包。
 还有webpack的配置都在build选项中，可自定义。
 ```
-\**module.exports = {
+\*module.exports = {
       cache: true, // 默认是false
       // or
       cache: {
@@ -24,7 +24,7 @@ cache表示缓存可以修改为true,如果有第三方需要打包如axios，�
           '~plugins/my-lib.js' // 自己写的
         ]
       }
-    }\**
+    }\*
 ```
     
 css的全局配置的时候，如果是第三方css文件比如normalize.css则直接使用名字即可，如果是scss则需要指定路径，并且标明lang: scss.新增了extractCSS,
